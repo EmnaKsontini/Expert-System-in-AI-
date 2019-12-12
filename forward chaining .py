@@ -272,7 +272,6 @@ class RadioList:
 
 window = Tk()
 fileImport1 = FileImport(Frame(window,"Bases des connaissance",0,0).getElement(),"Select file")
-#fileImport2 = FileImport(Frame(window,"Bases des regles",1,0).getElement() ,"Select file")
 goalInput = Input(Frame(window,"But",2,0).getElement(),'',DISABLED) 
 
 radioList = RadioList(
@@ -294,12 +293,10 @@ def execute():
     FileHandler = fileImport1.path.replace("'",'')
     Rules , Facts = ReadFile(FileHandler)
     but =None 
-    #print(re.split("(=|<|>|<=|>=|!=|==)",goalInput.content.get())[0])
     pattern = re.compile("((?P<parm6>(((\w+)+\s){1,}))(?P<parm9>(=|<|>|<=|>=|!=|==))((?P<parm8>(\s((\w|[1-9]|-|\")+)){1,})))")
     if goalInput.content.get() != "" :
         match= pattern.match(goalInput.content.get());
         but = Fait(match.group("parm6"),match.group("parm9"),match.group("parm8"))
-    #but = Fait (re.split("(=|<|>|<=|>=|!=|==)",goalInput.content.get())[0],"=",re.split("(=|<|>|<=|>=|!=|==)",goalInput.content.get())[2])
     print (Facts[2])
     print(but)
     buta,trace,Facts,FactsPorcess,appliedRuleProcess  = chainage_avant_avec_conflit(Rules,Facts,but)
@@ -313,12 +310,10 @@ def ShowAndSave():
     FileHandler = fileImport1.path.replace("'",'')
     Rules , Facts = ReadFile(FileHandler)
     but =None 
-    #print(re.split("(=|<|>|<=|>=|!=|==)",goalInput.content.get())[0])
     pattern = re.compile("((?P<parm6>(((\w+)+\s){1,}))(?P<parm9>(=|<|>|<=|>=|!=|==))((?P<parm8>(\s((\w|[1-9]|-|\")+)){1,})))")
     if goalInput.content.get() != "" :
         match= pattern.match(goalInput.content.get());
         but = Fait(match.group("parm6"),match.group("parm9"),match.group("parm8"))
-    #but = Fait (re.split("(=|<|>|<=|>=|!=|==)",goalInput.content.get())[0],"=",re.split("(=|<|>|<=|>=|!=|==)",goalInput.content.get())[2])
     print (Facts[2])
     print(but)
     buta,trace,Facts2,FactsPorcess,appliedRuleProcess = chainage_avant_avec_conflit(Rules,Facts,but)
@@ -334,8 +329,6 @@ def ShowAndSave():
     tlog.insert(END,"\n")
     filelog.write("---------FINAL FACTS ------------ \n")
     tlog.insert(END,"---------FINAL FACTS ------------ \n")
-    print("looooooooooooooo")
-    print(Facts2)
     tlog.insert(END,str(Facts2))
     tlog.insert(END,buta)
     filelog.write(str(Facts2))
